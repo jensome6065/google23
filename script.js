@@ -20,7 +20,7 @@ var factBtn = document.getElementById("factBtn");
 var count = 0;
 
 if (factBtn) {
-  factBtn.addEventListener("click", displayFact);
+  factBtn.addEventListener("click", displayFact());
 }
 
 function displayFact() {
