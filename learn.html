@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Learn</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
+    <!-- fonts here -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav>
+      <!-- navigation bar here-->
+      <ul class="nav-bar">
+        <li class="nav-item"><a href="about.html">About</a></li>
+        <li class="nav-item"><a href="opportunities.html">Opportunities</a></li>
+        <li class="nav-item"><a href="news.html">News</a></li>
+        <li class="nav-item"><a href="games.html">Games</a></li>
+        <li class="nav-item"><a href="social.html">Social</a></li>
+        <li class="nav-item dropdown">
+            <a href="#" class="dropbtn">Learn</a>
+            <div class="dropdown-content">
+              <a href="learn-overview.html">Overview</a>
+              <a href="learn-money-management.html">Money Management</a>
+              <a href="learn-identity-theft.html">Identity Theft</a>
+              <a href="learn-stocks.html">Stocks</a>
+            </div>
+          </li>        
+          <li class="nav-item"><a href="home.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <header class="homepage-heading">
+      <h1>
+      HOME
+      </h1>
+      <p class="subtitle">
+      Welcome to your new personal finance social media app!
+      </p>
+    </header>
+
+    <main>
+      <div class="flex-container">
+        <div class="flex-item">
+          <img src="assets/finance.jpg" alt="a pink piggy bank with a couple hundred dollars">
+        </div>
+      </div>
+
+      <h2>Learn how to get started</h2>
+        <p>
+          blahblahblah
+        </p>
+
+        <div class="calculator-container">
+            <h2>Savings Goal Calculator</h2>
+            <div class="calculator-input">
+              <label for="savings">Weekly Savings Amount:</label>
+              <input type="number" id="savings" step="100" min="0" required>
+            </div>
+            <div class="numbers-bar">
+              <div class="numbers-line"></div>
+              <div class="numbers-marker" id="numbersMarker" draggable="true"></div>
+            </div>
+            <div class="calculator-input">
+              <label for="weeks">How Many Weeks to Buy a Car:</label>
+              <input type="text" id="weeks" readonly>
+            </div>
+            <button class="calculator-button" id="calculateButton">Calculate</button>
+            <div class="calculator-result" id="result"></div>
+          </div>
+
+    </main>
+  </body>
+</html>
