@@ -7,6 +7,8 @@ const user_controller = require("../controllers/userController");
 
 /// BOOK ROUTES ///
 
+router.get("/user/login", user_controller.user_login_get);
+router.post("/user/login", user_controller.user_login_post);
 // GET catalog home page.
 router.get("/", post_controller.index);
 

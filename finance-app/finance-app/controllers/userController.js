@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 // Display list of all Users.
@@ -13,13 +14,47 @@ exports.user_detail = asyncHandler(async (req, res, next) => {
 
 // Display User create form on GET.
 exports.user_create_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: User create GET");
+  res.render("user_name", { title: "Create User" });
 });
 
 // Handle User create on POST.
-exports.user_create_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: User create POST");
-});
+exports.user_create_post = [
+  body("username")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Username must be specified.")
+    .isAlphanumeric()
+    .withMessage("Username has non-alphanumeric characters."),
+  body("name")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Name must be specified.")
+    .isAlphanumeric()
+    .withMessage("Name has non-alphanumeric characters."),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    // Create Author object with escaped and trimmed data
+    const user = new User({
+      username: req.body.username,
+      name: req.body.name,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("user_form", {
+        title: "Create User",
+        user: user,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      await user.save();
+      res.redirect(user.url);
+    }
+  }),
+];
 
 // Display User delete form on GET.
 exports.user_delete_get = asyncHandler(async (req, res, next) => {
@@ -40,3 +75,19 @@ exports.user_update_get = asyncHandler(async (req, res, next) => {
 exports.user_update_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User update POST");
 });
+
+exports.user_login_get = asyncHandler(async (req, res, next) => {
+  res.render("login", { title: "Login User" });
+});
+
+exports.user_login_post = asyncHandler(async (req, res, next) => {
+  const login = await User.findOne({'username' : req.body.username}, 'username');
+  if (login) {
+    req.session.user = login;
+    res.redirect('/social');
+    // console.log('%s', login.username);
+  }
+  else {
+    res.redirect('/social/user/create');
+  }
+})

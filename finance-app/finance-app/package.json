@@ -1,5 +1,5 @@
 {
-  "name": "google23",
+  "name": "finance-app",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-async-handler": "^1.2.0",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
     "http-errors": "~1.6.3",
     "mongoose": "^7.2.2",
     "morgan": "~1.9.1",
