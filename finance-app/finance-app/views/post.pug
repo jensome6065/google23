@@ -5,6 +5,8 @@ block content
 
   form(method='POST' action='')
     div.form-group
+      label(for='subject') Subject:
+      input#username.form-control(type='subject' placeholder='Subject' name='subject' required='true' value=(undefined===user ? '' : user.username) )
       label(for='text') Text:
       input#username.form-control(type='text' placeholder='Text' name='text' required='true' value=(undefined===user ? '' : user.username) )
     button.btn.btn-primary(type='submit') Submit
