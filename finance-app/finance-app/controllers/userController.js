@@ -33,6 +33,11 @@ exports.user_create_post = [
     .withMessage("Name must be specified.")
     .isAlphanumeric()
     .withMessage("Name has non-alphanumeric characters."),
+  body("password")
+    .trim()
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 chracters long."),
+
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
 
@@ -40,6 +45,7 @@ exports.user_create_post = [
     const user = new User({
       username: req.body.username,
       name: req.body.name,
+      password: req.body.password,
     });
 
     if (!errors.isEmpty()) {

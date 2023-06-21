@@ -13,6 +13,11 @@ const UserSchema = new Schema({
     required: true,
     maxLength: 100
   },
+  password: {
+    type: String,
+    required: true,
+    maxLength: 25
+  },
 });
 
 // Virtual for user's URL
