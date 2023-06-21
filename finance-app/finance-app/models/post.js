@@ -13,6 +13,10 @@ const PostSchema = new Schema({
     ref: "User",
     required: true
   },
+  subject: {
+    type: String,
+    maxLength: 100
+  },
   date: {
     type: Date
   },

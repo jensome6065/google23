@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Subject: #{post.subject}
+
+  p #[strong Name:] #{post.user.name}
+  p #[strong Date:] #{post.date}
+  p #[strong Username:]
+    a(href=post.user.url) #{post.user.username}
+  p #[strong Text:] #{post.text}
+  

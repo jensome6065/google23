@@ -37,7 +37,21 @@ exports.post_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific Post.
 exports.post_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Post detail: ${req.params.id}`);
+// Display detail page for a specific book.
+  // Get details of books, book instances for specific book
+  const post = await 
+    Post.findById(req.params.id).populate("user").populate("subject").exec();
+
+  if (post === null) {
+    // No results.
+    const err = new Error("Post not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render("post_detail", {
+    post: post,
+  });
 });
 
 // Display Post create form on GET.
