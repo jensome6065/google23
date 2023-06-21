@@ -23,16 +23,12 @@ exports.user_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Username must be specified.")
-    .isAlphanumeric()
-    .withMessage("Username has non-alphanumeric characters."),
+    .withMessage("Username must be specified."),
   body("name")
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Name must be specified.")
-    .isAlphanumeric()
-    .withMessage("Name has non-alphanumeric characters."),
+    .withMessage("Name must be specified."),
   body("password")
     .trim()
     .isLength({ min: 8 })
