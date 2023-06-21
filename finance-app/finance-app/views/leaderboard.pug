@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= title
+
+  if user
+    form(action="/leaderboard", method="post")
+      .form-group
+        label(for="name") Name:
+        input#name.form-control(type="text" placeholder="Name" name="name" required)
+      .form-group
+        label(for="amount") Amount:
+        input#amount.form-control(type="number" placeholder="Amount" name="amount" required)
+      .form-group
+        button.btn.btn-primary(type="submit") Submit
+  else
+    p You must be logged in to submit data to the leaderboard.
+
+  table.table.table-striped.mt-4
+    thead
+      tr
+        th Rank
+        th Name
+        th Amount
+    tbody
+      each data, index in leaderboardData
+        tr
+          td= index + 1
+          td= data.name
+          td= data.amount

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,6 +10,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var socialRouter = require('./routes/social');
+var leaderboardRouter = require('./routes/leaderboard');
+var stocksRouter = require('./routes/stocks');
 
 var app = express();
 
@@ -34,9 +38,13 @@ app.use(cookieParser());
 app.use(session({secret: 'secret'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const apiKey = process.env.STOCK_API_KEY;
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/social', socialRouter)
+app.use('/leaderboard', leaderboardRouter);
+app.use('/stocks', stocksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

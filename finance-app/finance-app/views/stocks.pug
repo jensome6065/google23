@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Stock Market Updates
+
+  table
+    thead
+      tr
+        th Stock Symbol
+        th Price
+        th Volume
+
+    tbody
+      each stock in stocksData
+        tr
+          td= stock.symbol
+          td= stock.price
+          td= stock.volume
