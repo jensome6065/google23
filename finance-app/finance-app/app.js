@@ -1,29 +1,31 @@
 require('dotenv').config();
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var socialRouter = require('./routes/social');
-var leaderboardRouter = require('./routes/leaderboard');
-var stocksRouter = require('./routes/stocks');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const socialRouter = require('./routes/social');
+const leaderboardRouter = require('./routes/leaderboard');
+const stocksRouter = require('./routes/stocks');
 
-var app = express();
+const app = express();
 
 // Set up mongoose connection
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://stuy_password:google@cluster0.aohhsht.mongodb.net/?retryWrites=true&w=majority";;
+const mongoDB = 'mongodb+srv://stuy_password:google@cluster0.aohhsht.mongodb.net/?retryWrites=true&w=majority';
 
-main().catch((err) => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
-}
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,18 +33,16 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret: 'secret'}));
+app.use(session({ secret: 'secret' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const apiKey = process.env.STOCK_API_KEY;
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/social', socialRouter)
+app.use('/social', socialRouter);
 app.use('/leaderboard', leaderboardRouter);
 app.use('/stocks', stocksRouter);
 

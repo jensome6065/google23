@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  if stocks.length > 0
+  if stocks && stocks.length > 0
     table
       thead
         tr
