@@ -1,18 +1,19 @@
 extends layout
 
 block content
-  h1 Stock Market Updates
-
-  table
-    thead
-      tr
-        th Stock Symbol
-        th Price
-        th Volume
-
-    tbody
-      each stock in stocksData
+  h1= title
+  if stocks.length > 0
+    table
+      thead
         tr
-          td= stock.symbol
-          td= stock.price
-          td= stock.volume
+          th Stock Symbol
+          th Price
+          th Volume
+      tbody
+        each stock in stocks
+          tr
+            td= stock.symbol
+            td= stock.price
+            td= stock.volume
+  else
+    p No stocks available
