@@ -7,13 +7,15 @@ block content
       thead
         tr
           th Stock Symbol
-          th Price
+          th High
+          th Low
           th Volume
       tbody
         each stock in stocks
           tr
             td= stock.symbol
-            td= stock.price
-            td= stock.volume
+            td= stock['2. high']
+            td= stock['3. low']
+            td= stock['6. volume']
   else
     p No stocks available
