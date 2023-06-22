@@ -8,6 +8,12 @@ html(lang='en')
     script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js", integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", crossorigin="anonymous")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js", integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script.
+      $(document).ready(function() {
+        $('.dropdown-toggle').on('click', function() {
+          $(this).next('.dropdown-menu').toggle();
+        });
+      })
   body
     div(class='container-fluid')
       div(class='row')
@@ -20,6 +26,13 @@ html(lang='en')
                 a(href='/social/posts') All posts
               li
                 a(href='/social/users') All users
+              li
+                a.dropdown-toggle(href='#', role='button', id='learnDropdown', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Learn
+                .dropdown-menu(aria-labelledby='learnDropdown')
+                  a.dropdown-item(href='/learn/overview') Overview
+                  a.dropdown-item(href='/learn/money_management') Money Management
+                  a.dropdown-item(href='/learn/identity_theft') Identity Theft
+                  a.dropdown-item(href='/learn/investing') Investing
               li
                 a(href='/leaderboard') Leaderboard
               li 
@@ -34,3 +47,6 @@ html(lang='en')
                 a(href='/social/user/login') Login
         div(class='col-sm-10')
           block content
+      footer 
+        div(class='container')
+          p &copy; 2023. Created by Kevin C, Niki C, Jiayu Y, Jennifer Y

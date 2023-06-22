@@ -13,6 +13,7 @@ const usersRouter = require('./routes/users');
 const socialRouter = require('./routes/social');
 const leaderboardRouter = require('./routes/leaderboard');
 const stocksRouter = require('./routes/stocks');
+const learnRouter = require('./routes/learn');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/social', socialRouter);
 app.use('/leaderboard', leaderboardRouter);
 app.use('/stocks', stocksRouter);
+app.use('/learn', learnRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
